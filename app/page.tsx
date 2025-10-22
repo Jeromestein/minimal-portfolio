@@ -140,7 +140,7 @@ export default function Home() {
                   role: "Software Engineer",
                   company: "Amazon AWS",
                   duration: "Current",
-                  description: "Led development of distributed, scalable features for AWS Billing Portal serving 4M+ users. Built AI Agent features with RAG, improving accuracy from 45% to 98%.",
+                  description: "Led development of distributed, scalable features for AWS Billing Portal serving 4M+ users. Built AI Agent features.",
                   tech: ["Java", "Go", "React", "AWS", "RAG", "MCP"],
                   highlight: "4M+ Users Served",
                 },
@@ -148,8 +148,8 @@ export default function Home() {
                   role: "Software Engineer",
                   company: "Instagram (Meta)",
                   duration: "",
-                  description: "Modernized structured data for SEO, achieving 4% increase and +3.8M DAU gain. Built comparison tools improving developer efficiency by 160%.",
-                  tech: ["React", "JavaScript", "Django", "Python", "JSON-LD"],
+                  description: "Modernized structured data for SEO. Built comparison tools improving developer efficiency.",
+                  tech: ["React", "TypeScript", "Django", "Python", "JSON-LD"],
                   highlight: "4% Growth & +3.8M DAU",
                 },
                 {
@@ -160,14 +160,14 @@ export default function Home() {
                   tech: ["C", "Linux", "System Programming"],
                   highlight: "100+ Students Taught",
                 },
-                {
-                  role: "Open Source Contributor",
-                  company: "Apache Software Foundation",
-                  duration: "Ongoing",
-                  description: "Contributed to Apache CarbonData, improving performance 2.2x and supporting 50+ enterprise production environments.",
-                  tech: ["Java", "Scala", "Spark", "Hadoop", "Big Data"],
-                  highlight: "2.2x Performance Improvement",
-                },
+                // {
+                //   role: "Open Source Contributor",
+                //   company: "Apache Software Foundation",
+                //   duration: "Ongoing",
+                //   description: "Contributed to Apache CarbonData, improving performance 2.2x and supporting 50+ enterprise production environments.",
+                //   tech: ["Java", "Scala", "Spark", "Hadoop", "Big Data"],
+                //   highlight: "2.2x Performance Improvement",
+                // },
               ].map((job, index) => (
                 <div
                   key={index}
@@ -188,9 +188,9 @@ export default function Home() {
                           <div className="text-sm text-green-500 font-mono">
                             {job.duration}
                           </div>
-                          <div className="text-xs px-3 py-1 bg-primary/10 text-primary rounded-full border border-primary/20">
+                          {/* <div className="text-xs px-3 py-1 bg-primary/10 text-primary rounded-full border border-primary/20">
                             {job.highlight}
-                          </div>
+                          </div> */}
                         </div>
                       </div>
                       
@@ -229,10 +229,10 @@ export default function Home() {
               {[
                 {
                   title: "AI-Powered CRM System",
-                  excerpt: "Full-stack CRM System for Bay Area Real Estate Brokers with AI-powered lead scoring, automated follow-ups, and MLS integration. Reduced agent effort by 85% through intelligent automation.",
+                  excerpt: "Full-stack CRM System for International Translation and Education Company with AI-powered degree credential verification, automated follow-ups, and email integration. Reduced agent effort by 85% through intelligent automation.",
                   date: "Dec 2024 - May 2025",
                   tech: ["Next.js", "TypeScript", "Python", "PostgreSQL", "MLS API", "LLM"],
-                  status: "In Development",
+                  status: "Live",
                   link: null,
                   screenshot: "/CRM_screenshot.png",
                   aspectRatio: "2916/2481", // Portrait orientation
@@ -252,7 +252,7 @@ export default function Home() {
                   excerpt: "Rebuilt the classic 2048 for iOS & macOS with a SpriteKit engine, MVVM data core, and a neon 'hacker' UI. Implemented dynamic board presets that auto-calculate scores, touch/keyboard/trackpad gesture handling, and synchronized animations for spawns, moves, and merges.",
                   date: "Dec 2023 – Present",
                   tech: ["Swift", "SpriteKit", "MVVM", "iOS", "macOS", "Combine"],
-                  status: "Live",
+                  status: "In Development",
                   link: null,
                   screenshot: "/My2048_screenshot.png",
                   aspectRatio: "1600/1256", // Square orientation for mobile app
@@ -326,8 +326,8 @@ export default function Home() {
                     </div>
 
                     <div className="flex items-center gap-2 text-base text-muted-foreground group-hover:text-foreground transition-colors duration-300">
-                      <span>{project.link ? 'View on GitHub' : 'View details'}</span>
-                      <svg
+                      <span>{project.link ? 'More Details' : ''}</span>
+                      {project.link ? <svg
                         className="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300"
                         fill="none"
                         stroke="currentColor"
@@ -340,6 +340,7 @@ export default function Home() {
                           d="M17 8l4 4m0 0l-4 4m4-4H3"
                         />
                       </svg>
+                      : null}
                     </div>
                   </div>
                 </article>
