@@ -1,11 +1,13 @@
 "use client"
 
+import Image from "next/image"
 import Link from "next/link"
 import { useEffect, useRef, useState } from "react"
 
 export default function Home() {
   const [isDark, setIsDark] = useState(true)
   const [activeSection, setActiveSection] = useState("")
+  const [failedScreenshots, setFailedScreenshots] = useState<Record<number, boolean>>({})
   const sectionsRef = useRef<(HTMLElement | null)[]>([])
 
   useEffect(() => {
@@ -57,7 +59,7 @@ export default function Home() {
         <header
           id="intro"
           ref={(el) => { sectionsRef.current[0] = el }}
-          className="min-h-screen flex items-center opacity-0"
+          className="min-h-screen flex items-center"
         >
           <div className="grid lg:grid-cols-5 gap-12 sm:gap-16 w-full">
             <div className="lg:col-span-3 space-y-6 sm:space-y-8">
@@ -126,7 +128,7 @@ export default function Home() {
         <section
           id="work"
           ref={(el) => { sectionsRef.current[1] = el }}
-          className="min-h-screen py-20 sm:py-32 opacity-0"
+          className="min-h-screen py-20 sm:py-32"
         >
           <div className="space-y-12 sm:space-y-16">
             <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
@@ -219,7 +221,7 @@ export default function Home() {
         <section
           id="projects"
           ref={(el) => { sectionsRef.current[2] = el }}
-          className="min-h-screen py-20 sm:py-32 opacity-0"
+          className="min-h-screen py-20 sm:py-32"
         >
           <div className="space-y-12 sm:space-y-16">
             <h2 className="text-3xl sm:text-4xl font-light">Featured Projects</h2>
@@ -272,27 +274,37 @@ export default function Home() {
                           maxHeight: '800px'
                         }}
                       >
-                        <img
-                          src={project.screenshot}
-                          alt={`${project.title} screenshot`}
-                          className="absolute inset-0 w-full h-full object-contain"
-                          loading="lazy"
-                          onError={(e) => {
-                            e.currentTarget.style.display = 'none';
-                            e.currentTarget.parentElement!.innerHTML = `
-                              <div class="w-full h-full bg-muted/20 flex items-center justify-center text-muted-foreground text-sm">
-                                <div class="text-center">
-                                  <div class="w-12 h-12 mx-auto mb-2 rounded-full bg-muted/30 flex items-center justify-center">
-                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                                    </svg>
-                                  </div>
-                                  <div>Screenshot Preview</div>
-                                </div>
+                        {failedScreenshots[index] ? (
+                          <div className="absolute inset-0 flex items-center justify-center bg-muted/20 text-muted-foreground text-sm">
+                            <div className="text-center space-y-2">
+                              <div className="w-12 h-12 mx-auto rounded-full bg-muted/30 flex items-center justify-center">
+                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="2"
+                                    d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                                  />
+                                </svg>
                               </div>
-                            `;
-                          }}
-                        />
+                              <div>Screenshot Preview</div>
+                            </div>
+                          </div>
+                        ) : (
+                          <Image
+                            fill
+                            src={project.screenshot}
+                            alt={`${project.title} screenshot`}
+                            className="object-contain"
+                            sizes="(min-width: 1280px) 50vw, (min-width: 768px) 75vw, 100vw"
+                            onError={() =>
+                              setFailedScreenshots((prev) => ({
+                                ...prev,
+                                [index]: true,
+                              }))
+                            }
+                          />
+                        )}
                       </div>
                     </div>
                   )}
@@ -427,7 +439,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="connect" ref={(el) => { sectionsRef.current[3] = el }} className="py-20 sm:py-32 opacity-0">
+        <section id="connect" ref={(el) => { sectionsRef.current[3] = el }} className="py-20 sm:py-32">
           <div className="grid lg:grid-cols-2 gap-12 sm:gap-16">
             <div className="space-y-6 sm:space-y-8">
               <h2 className="text-3xl sm:text-4xl font-light">Let's Connect</h2>
