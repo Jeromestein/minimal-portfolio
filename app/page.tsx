@@ -224,7 +224,8 @@ export default function Home() {
           <div className="space-y-12 sm:space-y-16">
             <h2 className="text-3xl sm:text-4xl font-light">Featured Projects</h2>
 
-            <div className="grid gap-6 sm:gap-8 lg:grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3">
+            {/* Featured Projects with Screenshots */}
+            <div className="space-y-12 sm:space-y-16">
               {[
                 {
                   title: "AI-Powered CRM System",
@@ -253,36 +254,22 @@ export default function Home() {
                   tech: ["Swift", "SpriteKit", "MVVM", "iOS", "macOS", "Combine"],
                   status: "Live",
                   link: null,
-                },
-                {
-                  title: "PayloadCMS Ecommerce Features",
-                  excerpt: "Open source contributions to PayloadCMS, a modern headless CMS built with Node.js and TypeScript. Led development of the latest ecommerce features, enabling seamless online store management and payment integration capabilities.",
-                  date: "2024 - Present",
-                  tech: ["Node.js", "TypeScript", "React", "MongoDB", "Stripe", "Ecommerce"],
-                  status: "Active",
-                  link: "https://github.com/payloadcms/payload",
-                },
-                {
-                  title: "Apache CarbonData Contributions",
-                  excerpt: "Open source contributions to distributed data analytics platform. Improved performance 2.2x and supported 50+ enterprise production environments with trillions of data scale.",
-                  date: "May 2021 - Present",
-                  tech: ["Java", "Scala", "Spark", "Hadoop", "Big Data"],
-                  status: "Active",
-                  link: "https://github.com/apache/carbondata",
+                  screenshot: "/My2048_screenshot.png",
+                  aspectRatio: "1600/1256", // Square orientation for mobile app
                 },
               ].map((project, index) => (
                 <article
                   key={index}
-                  className="group p-6 sm:p-8 border border-border rounded-lg hover:border-muted-foreground/50 transition-all duration-500 hover:shadow-lg cursor-pointer"
+                  className="group p-8 sm:p-12 border border-border rounded-xl hover:border-muted-foreground/50 transition-all duration-500 hover:shadow-lg cursor-pointer"
                   onClick={() => project.link && window.open(project.link, '_blank')}
                 >
                   {project.screenshot && (
-                    <div className="mb-6 rounded-lg overflow-hidden border border-border/30 bg-muted/10">
+                    <div className="mb-8 rounded-xl overflow-hidden border border-border/30 bg-muted/10">
                       <div 
                         className="relative w-full"
                         style={{ 
                           aspectRatio: project.aspectRatio,
-                          maxHeight: '400px'
+                          maxHeight: '800px'
                         }}
                       >
                         <img
@@ -309,10 +296,10 @@ export default function Home() {
                       </div>
                     </div>
                   )}
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between text-xs text-muted-foreground font-mono">
+                  <div className="space-y-6">
+                    <div className="flex items-center justify-between text-sm text-muted-foreground font-mono">
                       <span>{project.date}</span>
-                      <span className={`px-2 py-1 rounded-full text-xs ${
+                      <span className={`px-3 py-1 rounded-full text-sm ${
                         project.status === 'Live' ? 'bg-green-500/20 text-green-400' :
                         project.status === 'In Development' ? 'bg-yellow-500/20 text-yellow-400' :
                         'bg-blue-500/20 text-blue-400'
@@ -321,27 +308,27 @@ export default function Home() {
                       </span>
                     </div>
 
-                    <h3 className="text-lg sm:text-xl font-medium group-hover:text-muted-foreground transition-colors duration-300">
+                    <h3 className="text-2xl sm:text-3xl font-medium group-hover:text-muted-foreground transition-colors duration-300">
                       {project.title}
                     </h3>
 
-                    <p className="text-muted-foreground leading-relaxed">{project.excerpt}</p>
+                    <p className="text-lg text-muted-foreground leading-relaxed max-w-4xl">{project.excerpt}</p>
 
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-3">
                       {project.tech.map((tech) => (
                         <span
                           key={tech}
-                          className="px-2 py-1 text-xs text-muted-foreground border border-border rounded group-hover:border-muted-foreground/50 transition-colors duration-300"
+                          className="px-3 py-2 text-sm text-muted-foreground border border-border rounded-full group-hover:border-muted-foreground/50 transition-colors duration-300"
                         >
                           {tech}
                         </span>
                       ))}
                     </div>
 
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-300">
+                    <div className="flex items-center gap-2 text-base text-muted-foreground group-hover:text-foreground transition-colors duration-300">
                       <span>{project.link ? 'View on GitHub' : 'View details'}</span>
                       <svg
-                        className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300"
+                        className="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -357,6 +344,84 @@ export default function Home() {
                   </div>
                 </article>
               ))}
+            </div>
+
+            {/* Open Source Contributions */}
+            <div className="mt-16">
+              <h3 className="text-2xl sm:text-3xl font-light mb-8">Open Source Contributions</h3>
+              <div className="grid gap-6 sm:gap-8 lg:grid-cols-1 xl:grid-cols-2">
+                {[
+                  {
+                    title: "PayloadCMS, E-commerce",
+                    excerpt: "Open source contributions to PayloadCMS, a modern headless CMS built with Node.js and TypeScript. Led development of the latest ecommerce features, enabling seamless online store management and payment integration capabilities.",
+                    date: "2024 - Present",
+                    tech: ["Node.js", "TypeScript", "React", "MongoDB", "Stripe", "Ecommerce"],
+                    status: "Active",
+                    link: "https://github.com/payloadcms/payload",
+                  },
+                  {
+                    title: "Apache CarbonData",
+                    excerpt: "Open source contributions to distributed data analytics platform. Improved performance 2.2x and supported 50+ enterprise production environments with trillions of data scale.",
+                    date: "May 2021 - Present",
+                    tech: ["Java", "Scala", "Spark", "Hadoop", "Big Data"],
+                    status: "Active",
+                    link: "https://github.com/apache/carbondata",
+                  },
+                ].map((project, index) => (
+                  <article
+                    key={index}
+                    className="group p-6 sm:p-8 border border-border rounded-lg hover:border-muted-foreground/50 transition-all duration-500 hover:shadow-lg cursor-pointer"
+                    onClick={() => project.link && window.open(project.link, '_blank')}
+                  >
+                    <div className="space-y-4">
+                      <div className="flex items-center justify-between text-xs text-muted-foreground font-mono">
+                        <span>{project.date}</span>
+                        <span className={`px-2 py-1 rounded-full text-xs ${
+                          project.status === 'Live' ? 'bg-green-500/20 text-green-400' :
+                          project.status === 'In Development' ? 'bg-yellow-500/20 text-yellow-400' :
+                          'bg-blue-500/20 text-blue-400'
+                        }`}>
+                          {project.status}
+                        </span>
+                      </div>
+
+                      <h3 className="text-lg sm:text-xl font-medium group-hover:text-muted-foreground transition-colors duration-300">
+                        {project.title}
+                      </h3>
+
+                      <p className="text-muted-foreground leading-relaxed">{project.excerpt}</p>
+
+                      <div className="flex flex-wrap gap-2">
+                        {project.tech.map((tech) => (
+                          <span
+                            key={tech}
+                            className="px-2 py-1 text-xs text-muted-foreground border border-border rounded group-hover:border-muted-foreground/50 transition-colors duration-300"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-300">
+                        <span>{project.link ? 'View on GitHub' : 'View details'}</span>
+                        <svg
+                          className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M17 8l4 4m0 0l-4 4m4-4H3"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </article>
+                ))}
+              </div>
             </div>
           </div>
         </section>
