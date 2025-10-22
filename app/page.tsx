@@ -224,7 +224,7 @@ export default function Home() {
           <div className="space-y-12 sm:space-y-16">
             <h2 className="text-3xl sm:text-4xl font-light">Featured Projects</h2>
 
-            <div className="grid gap-6 sm:gap-8 lg:grid-cols-2">
+            <div className="grid gap-6 sm:gap-8 lg:grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3">
               {[
                 {
                   title: "AI-Powered CRM System",
@@ -233,6 +233,34 @@ export default function Home() {
                   tech: ["Next.js", "TypeScript", "Python", "PostgreSQL", "MLS API", "LLM"],
                   status: "In Development",
                   link: null,
+                  screenshot: "/CRM_screenshot.png",
+                  aspectRatio: "2916/2481", // Portrait orientation
+                },
+                {
+                  title: "EverLove Charity",
+                  excerpt: "A comprehensive charity platform designed to connect donors with meaningful causes and facilitate transparent donation processes. Built with modern web technologies to create a seamless giving experience.",
+                  date: "2024",
+                  tech: ["Next.js", "TypeScript", "React", "Tailwind CSS", "Web3"],
+                  status: "Live",
+                  link: "https://www.everlovecharity.com/",
+                  screenshot: "/Everlove_screenshot.png",
+                  aspectRatio: "2943/1866", // Landscape orientation
+                },
+                {
+                  title: "My2048 – Cyberpunk Puzzle Remaster",
+                  excerpt: "Rebuilt the classic 2048 for iOS & macOS with a SpriteKit engine, MVVM data core, and a neon 'hacker' UI. Implemented dynamic board presets that auto-calculate scores, touch/keyboard/trackpad gesture handling, and synchronized animations for spawns, moves, and merges.",
+                  date: "Dec 2023 – Present",
+                  tech: ["Swift", "SpriteKit", "MVVM", "iOS", "macOS", "Combine"],
+                  status: "Live",
+                  link: null,
+                },
+                {
+                  title: "PayloadCMS Ecommerce Features",
+                  excerpt: "Open source contributions to PayloadCMS, a modern headless CMS built with Node.js and TypeScript. Led development of the latest ecommerce features, enabling seamless online store management and payment integration capabilities.",
+                  date: "2024 - Present",
+                  tech: ["Node.js", "TypeScript", "React", "MongoDB", "Stripe", "Ecommerce"],
+                  status: "Active",
+                  link: "https://github.com/payloadcms/payload",
                 },
                 {
                   title: "Apache CarbonData Contributions",
@@ -248,6 +276,39 @@ export default function Home() {
                   className="group p-6 sm:p-8 border border-border rounded-lg hover:border-muted-foreground/50 transition-all duration-500 hover:shadow-lg cursor-pointer"
                   onClick={() => project.link && window.open(project.link, '_blank')}
                 >
+                  {project.screenshot && (
+                    <div className="mb-6 rounded-lg overflow-hidden border border-border/30 bg-muted/10">
+                      <div 
+                        className="relative w-full"
+                        style={{ 
+                          aspectRatio: project.aspectRatio,
+                          maxHeight: '400px'
+                        }}
+                      >
+                        <img
+                          src={project.screenshot}
+                          alt={`${project.title} screenshot`}
+                          className="absolute inset-0 w-full h-full object-contain"
+                          loading="lazy"
+                          onError={(e) => {
+                            e.currentTarget.style.display = 'none';
+                            e.currentTarget.parentElement!.innerHTML = `
+                              <div class="w-full h-full bg-muted/20 flex items-center justify-center text-muted-foreground text-sm">
+                                <div class="text-center">
+                                  <div class="w-12 h-12 mx-auto mb-2 rounded-full bg-muted/30 flex items-center justify-center">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                    </svg>
+                                  </div>
+                                  <div>Screenshot Preview</div>
+                                </div>
+                              </div>
+                            `;
+                          }}
+                        />
+                      </div>
+                    </div>
+                  )}
                   <div className="space-y-4">
                     <div className="flex items-center justify-between text-xs text-muted-foreground font-mono">
                       <span>{project.date}</span>
