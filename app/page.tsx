@@ -83,7 +83,7 @@ export default function Home() {
                     <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                     Open to opportunities
                   </div>
-                  <div>Seattle, WA</div>
+                  <div>Irvine, CA</div>
                 </div>
               </div>
             </div>
@@ -102,14 +102,14 @@ export default function Home() {
                 <div className="space-y-2">
                   <div className="text-foreground">Software Engineer</div>
                   <div className="text-muted-foreground">@ Amazon AWS</div>
-                  <div className="text-xs text-muted-foreground">2023 — Present</div>
+                  {/* <div className="text-xs text-muted-foreground">2023 — Present</div> */}
                 </div>
               </div>
 
               <div className="space-y-4 text-center">
                 <div className="text-sm text-muted-foreground font-mono">FOCUS</div>
                 <div className="flex flex-wrap gap-2 justify-center">
-                  {["Java", "React", "Python", "Go", "AWS", "AI/ML"].map((skill) => (
+                  {["React", "TypeScript", "Python", "Go", "AWS", "Java", "AI/ML"].map((skill) => (
                     <span
                       key={skill}
                       className="px-3 py-1 text-xs border border-border rounded-full hover:border-muted-foreground/50 transition-colors duration-300"
@@ -232,20 +232,7 @@ export default function Home() {
                   date: "Dec 2024 - May 2025",
                   tech: ["Next.js", "TypeScript", "Python", "PostgreSQL", "MLS API", "LLM"],
                   status: "In Development",
-                },
-                {
-                  title: "AWS Billing Portal Features",
-                  excerpt: "Distributed, scalable customer-facing features for AWS Billing Portal serving 4M+ users. Implemented microservices architecture improving system reliability and processing throughput by 30%.",
-                  date: "Jul 2023 - Present",
-                  tech: ["Java", "Go", "React", "AWS", "Microservices"],
-                  status: "Live",
-                },
-                {
-                  title: "Instagram SEO Modernization",
-                  excerpt: "Modernized structured data for SEO infrastructure, achieving 4% increase and +3.8M DAU gain. Built developer tools improving efficiency by 160%.",
-                  date: "Mar 2022 - Aug 2022",
-                  tech: ["React", "Django", "Python", "JSON-LD", "SEO"],
-                  status: "Live",
+                  link: null,
                 },
                 {
                   title: "Apache CarbonData Contributions",
@@ -253,11 +240,13 @@ export default function Home() {
                   date: "May 2021 - Present",
                   tech: ["Java", "Scala", "Spark", "Hadoop", "Big Data"],
                   status: "Active",
+                  link: "https://github.com/apache/carbondata",
                 },
               ].map((project, index) => (
                 <article
                   key={index}
                   className="group p-6 sm:p-8 border border-border rounded-lg hover:border-muted-foreground/50 transition-all duration-500 hover:shadow-lg cursor-pointer"
+                  onClick={() => project.link && window.open(project.link, '_blank')}
                 >
                   <div className="space-y-4">
                     <div className="flex items-center justify-between text-xs text-muted-foreground font-mono">
@@ -289,7 +278,7 @@ export default function Home() {
                     </div>
 
                     <div className="flex items-center gap-2 text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-300">
-                      <span>View details</span>
+                      <span>{project.link ? 'View on GitHub' : 'View details'}</span>
                       <svg
                         className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300"
                         fill="none"
