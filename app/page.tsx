@@ -130,64 +130,81 @@ export default function Home() {
         >
           <div className="space-y-12 sm:space-y-16">
             <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
-              <h2 className="text-3xl sm:text-4xl font-light">Selected Work</h2>
-              <div className="text-sm text-muted-foreground font-mono">2019 — 2025</div>
+              <h2 className="text-3xl sm:text-4xl font-light">Professional Experience</h2>
+              <div className="text-sm text-muted-foreground font-mono">Career Journey</div>
             </div>
 
             <div className="space-y-8 sm:space-y-12">
               {[
                 {
-                  year: "2023",
                   role: "Software Engineer",
                   company: "Amazon AWS",
+                  duration: "Current",
                   description: "Led development of distributed, scalable features for AWS Billing Portal serving 4M+ users. Built AI Agent features with RAG, improving accuracy from 45% to 98%.",
                   tech: ["Java", "Go", "React", "AWS", "RAG", "MCP"],
+                  highlight: "4M+ Users Served",
                 },
                 {
-                  year: "2022",
-                  role: "Software Engineer Intern",
+                  role: "Software Engineer",
                   company: "Instagram (Meta)",
+                  duration: "",
                   description: "Modernized structured data for SEO, achieving 4% increase and +3.8M DAU gain. Built comparison tools improving developer efficiency by 160%.",
                   tech: ["React", "JavaScript", "Django", "Python", "JSON-LD"],
+                  highlight: "4% Growth & +3.8M DAU",
                 },
                 {
-                  year: "2021",
                   role: "Teaching Assistant",
                   company: "UMass Amherst",
+                  duration: "",
                   description: "Designed and delivered coursework for 100+ students in C Programming & Linux system programming.",
                   tech: ["C", "Linux", "System Programming"],
+                  highlight: "100+ Students Taught",
                 },
                 {
-                  year: "2021",
                   role: "Open Source Contributor",
                   company: "Apache Software Foundation",
+                  duration: "Ongoing",
                   description: "Contributed to Apache CarbonData, improving performance 2.2x and supporting 50+ enterprise production environments.",
                   tech: ["Java", "Scala", "Spark", "Hadoop", "Big Data"],
+                  highlight: "2.2x Performance Improvement",
                 },
               ].map((job, index) => (
                 <div
                   key={index}
-                  className="group grid lg:grid-cols-12 gap-4 sm:gap-8 py-6 sm:py-8 border-b border-border/50 hover:border-border transition-colors duration-500"
+                  className="group relative p-6 sm:p-8 border border-border/30 rounded-xl hover:border-border/60 transition-all duration-500 hover:shadow-lg bg-gradient-to-r from-transparent to-transparent hover:from-muted/5 hover:to-transparent"
                 >
-                  <div className="lg:col-span-2">
-                    <div className="text-xl sm:text-2xl font-light text-muted-foreground group-hover:text-foreground transition-colors duration-500">
-                      {job.year}
+                  <div className="flex flex-col lg:flex-row lg:items-start gap-4 lg:gap-8">
+                    <div className="flex-1 space-y-4">
+                      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
+                        <div>
+                          <h3 className="text-xl sm:text-2xl font-medium text-foreground group-hover:text-foreground transition-colors duration-300">
+                            {job.role}
+                          </h3>
+                          <div className="text-lg text-muted-foreground group-hover:text-foreground/80 transition-colors duration-300">
+                            {job.company}
+                          </div>
+                        </div>
+                        <div className="flex flex-col sm:items-end gap-2">
+                          <div className="text-sm text-green-500 font-mono">
+                            {job.duration}
+                          </div>
+                          <div className="text-xs px-3 py-1 bg-primary/10 text-primary rounded-full border border-primary/20">
+                            {job.highlight}
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <p className="text-muted-foreground leading-relaxed text-base">
+                        {job.description}
+                      </p>
                     </div>
                   </div>
-
-                  <div className="lg:col-span-6 space-y-3">
-                    <div>
-                      <h3 className="text-lg sm:text-xl font-medium">{job.role}</h3>
-                      <div className="text-muted-foreground">{job.company}</div>
-                    </div>
-                    <p className="text-muted-foreground leading-relaxed max-w-lg">{job.description}</p>
-                  </div>
-
-                  <div className="lg:col-span-4 flex flex-wrap gap-2 lg:justify-end mt-2 lg:mt-0">
+                  
+                  <div className="flex flex-wrap gap-2 mt-6 pt-4 border-t border-border/20">
                     {job.tech.map((tech) => (
                       <span
                         key={tech}
-                        className="px-2 py-1 text-xs text-muted-foreground rounded group-hover:border-muted-foreground/50 transition-colors duration-500"
+                        className="px-3 py-1 text-xs font-medium text-muted-foreground bg-muted/30 rounded-full border border-border/30 group-hover:bg-muted/50 group-hover:border-border/50 transition-all duration-300"
                       >
                         {tech}
                       </span>
@@ -340,10 +357,12 @@ export default function Home() {
                     className="group p-4 border border-border rounded-lg hover:border-muted-foreground/50 transition-all duration-300 hover:shadow-sm"
                   >
                     <div className="space-y-2">
-                      <div className="text-foreground group-hover:text-muted-foreground transition-colors duration-300">
+                      <div className="text-foreground group-hover:text-muted-foreground transition-colors duration-300 break-words">
                         {social.name}
                       </div>
-                      <div className="text-sm text-muted-foreground">{social.handle}</div>
+                      <div className="text-sm text-muted-foreground break-words overflow-wrap-anywhere">
+                        {social.handle}
+                      </div>
                     </div>
                   </Link>
                 ))}
@@ -356,7 +375,6 @@ export default function Home() {
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 sm:gap-8">
             <div className="space-y-2">
               <div className="text-sm text-muted-foreground">© 2025 Jiayi Wang. All rights reserved.</div>
-              <div className="text-xs text-muted-foreground">Built with Next.js and Tailwind CSS</div>
             </div>
 
             <div className="flex items-center gap-4">
@@ -388,7 +406,7 @@ export default function Home() {
                 )}
               </button>
 
-              <button className="group p-3 rounded-lg border border-border hover:border-muted-foreground/50 transition-all duration-300">
+              {/* <button className="group p-3 rounded-lg border border-border hover:border-muted-foreground/50 transition-all duration-300">
                 <svg
                   className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors duration-300"
                   fill="none"
@@ -402,7 +420,7 @@ export default function Home() {
                     d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
                   />
                 </svg>
-              </button>
+              </button> */}
             </div>
           </div>
         </footer>
