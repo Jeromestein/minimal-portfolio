@@ -38,19 +38,42 @@ export default function Home() {
     setIsDark(!isDark)
   }
 
+  const navItems = [
+    { id: "intro", label: "Conclusion" },
+    { id: "work", label: "Professional Experience" },
+    { id: "projects", label: "Featured Projects" },
+    { id: "connect", label: "Connect" },
+  ]
+
   return (
     <div className="min-h-screen bg-background text-foreground relative">
       <nav className="fixed left-8 top-1/2 -translate-y-1/2 z-10 hidden lg:block">
-        <div className="flex flex-col gap-4">
-          {["intro", "work", "projects", "connect"].map((section) => (
-            <button
-              key={section}
-              onClick={() => document.getElementById(section)?.scrollIntoView({ behavior: "smooth" })}
-              className={`w-2 h-8 rounded-full transition-all duration-500 ${
-                activeSection === section ? "bg-foreground" : "bg-muted-foreground/30 hover:bg-muted-foreground/60"
-              }`}
-              aria-label={`Navigate to ${section}`}
-            />
+        <div className="flex flex-col gap-5">
+          {navItems.map((item) => (
+            <div key={item.id} className="flex items-center gap-4">
+              <button
+                type="button"
+                onClick={() => document.getElementById(item.id)?.scrollIntoView({ behavior: "smooth" })}
+                className={`h-10 w-1 rounded-full transition-colors duration-300 ${
+                  activeSection === item.id
+                    ? "bg-foreground"
+                    : "bg-muted-foreground/30 hover:bg-muted-foreground/60"
+                }`}
+                aria-label={`Navigate to ${item.label}`}
+              />
+              <button
+                type="button"
+                onClick={() => document.getElementById(item.id)?.scrollIntoView({ behavior: "smooth" })}
+                className={`text-sm font-medium tracking-wide text-left transition-colors duration-300 ${
+                  activeSection === item.id
+                    ? "text-foreground"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+                aria-current={activeSection === item.id ? "true" : undefined}
+              >
+                {item.label}
+              </button>
+            </div>
           ))}
         </div>
       </nav>
