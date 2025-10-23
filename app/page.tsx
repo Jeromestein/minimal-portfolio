@@ -39,7 +39,7 @@ export default function Home() {
   }
 
   const navItems = [
-    { id: "intro", label: "Conclusion" },
+    { id: "intro", label: "Overview" },
     { id: "work", label: "Professional Experience" },
     { id: "projects", label: "Featured Projects" },
     { id: "connect", label: "Connect" },
